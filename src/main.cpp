@@ -61,12 +61,20 @@ static inline double block_luma(uint32_t x, uint32_t y)
 
 int main()
 {
+    if (argc != 6) // Check if the correct number of arguments are passed
+    {
+        std::cerr << "Usage: [program] [input file] [output file] [downsampling] [supersampling] [invert]" << std::endl;
+        return 1;
+    }
+
+    // Assuming settings is a struct or class instance you have defined elsewhere
+    settings.input_path = argv[1];
+    settings.output_path = argv[2];
+    settings.block_size = std::stoi(argv[3]);
+    settings.ss = std::stoi(argv[4]);
+    settings.invert = std::stoi(argv[5]) != 0;
+    
     std::string pixel_chars = "@%#+?*;=-:.` ";
-
-    // get settings from terminal
-
-    std::cout << "[input file] [output file] [downsampling] [supersampling] [invert]" << "\n> ";
-    std::cin >> settings.input_path >> settings.output_path >> settings.block_size >> settings.ss >> settings.invert;
     
     if (!settings.ss)
         ERROR("the smallest value for supersampling is 1 (disabled)");

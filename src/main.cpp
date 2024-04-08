@@ -59,7 +59,7 @@ static inline double block_luma(uint32_t x, uint32_t y)
     return luma_sum / (pixels_sampled * 255.0);
 }
 
-int main()
+int main(int argc, char* argv[])
 {
     if (argc != 6) // Check if the correct number of arguments are passed
     {
